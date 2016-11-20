@@ -6,7 +6,8 @@ import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
 public class BluetoothServer {
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {				
+		Thread thread = new Thread(new AcceptConnectionThread());
+		thread.start();
 	}
 }
