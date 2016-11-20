@@ -1,4 +1,5 @@
 import javax.microedition.io.StreamConnection;
+import java.io.InputStream;
 
 public class ProcessConnectionThread extends Thread{
 	
@@ -10,6 +11,16 @@ public class ProcessConnectionThread extends Thread{
 	
 	@Override
 	public void run() {
-		System.out.println("Processing connection...");
+		InputStream inputStream = connection.openInputStream();
+		System.out.println("Waiting for inputStream");
+		while(true) {
+			int ledStatus = inputStream.read();
+			System.out.println("Led status: " + ledStatus);
+			if(ledStatus == 1) {
+				//turn led on
+			} else {
+				//turn led off
+			}
+		}
 	}
 }
