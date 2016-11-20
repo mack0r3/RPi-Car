@@ -38,7 +38,7 @@ public class AcceptConnectionThread extends Thread {
 		
 		while(true) {
 			try {
-				Log("Establishing bluetooth connection...");
+				Log("Waiting for bluetooth connection...");
 				connection = notifier.acceptAndOpen();				
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -46,8 +46,9 @@ public class AcceptConnectionThread extends Thread {
 			}
 			
 			if (connection != null) {
-				//Handle connection established.
-				//...
+				Log("Connection established...");
+				Thread thread = new Thread(new ProcessConnectionThread(connection));
+				thread.start();
 				try {
 					notifier.close();
 				} catch (Exception ex) {
